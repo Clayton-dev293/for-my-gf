@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For My Girlfriend ❤️</title>
+
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            color: hotpink;
+        }
+
+        button {
+            background-color: hotpink;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        #message {
+            color: deeppink;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="home">
+
+        <h1>Hiiii pretty girl </h1>
+
+
+
+
+
+        <button onclick="startQuestions()">
+            Start Questions 💌
+        </button>
+
+    </div>
+
+
+    <div class="box" id="questions" style="display: none;">
+
+        <h1>Hi Jeanie bean </h1>
+
+        <p>
+            I made this its not much but I hope you like it </p>
+
+        <h3 id="question">What is your favourite thing about us? </h3>
+
+        <button onclick="chooseAnswer('Our dates')">
+            Our dates
+        </button>
+
+        <button onclick="chooseAnswer('Our son mbuss')">
+            Our son mbuss
+        </button>
+
+        <button onclick="chooseAnswer('Everything about us ')">
+            Everything about us
+        </button>
+
+        <br><br>
+
+        <p>Or type your own answer:</p>
+
+        <input type="text" id="myAnswer" placeholder="Write your answer here...">
+
+        <br>
+
+        <button onclick="submitAnswer()">Submit Answer 💌</button>
+
+        <p id="message"></p>
+
+        <button onclick="nextQuestion()">Next Question ➡️</button>
+        <br>
+
+        <button onclick="goHome()">🏠 Return to Home</button>
+
+
+    </div>
+
+
+
+    <script>
+        let questionNumber = 0;
+
+        const questions = [
+            "What is your favourite thing about us?",
+            "What's your favourite song right now?",
+            "BMW or Mercedes?",
+            "What nickname do you love me calling you?",
+            "Man City or Arsenal?"
+        ];
+
+        function startQuestions() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("questions").style.display = "block";
+        }
+
+        function goHome() {
+            document.getElementById("questions").style.display = "none";
+            document.getElementById("home").style.display = "block";
+
+            questionNumber = 0;
+        }
+
+        function chooseAnswer(answer) {
+            document.getElementById("myAnswer").value = answer;
+        }
+
+        function submitAnswer() {
+            let answer = document.getElementById("myAnswer").value.trim();
+
+            if (answer === "") {
+                document.getElementById("message").innerText =
+                    "Please write or choose an answer, baby! ";
+            } else {
+                document.getElementById("message").innerText =
+                    "Awww, I love your answer! ";
+            }
+        }
+
+        function nextQuestion() {
+            questionNumber++;
+
+            if (questionNumber < questions.length) {
+                document.getElementById("question").innerText =
+                    questions[questionNumber];
+
+                document.getElementById("myAnswer").value = "";
+                document.getElementById("message").innerText = "";
+            } else {
+                document.getElementById("question").innerText =
+                    "I love you so much! ";
+
+                document.getElementById("message").innerText =
+                    "Thank you for answering my questions, my love! ";
+
+                document.getElementById("myAnswer").style.display = "none";
+
+                document.querySelectorAll("#questions button").forEach(
+                    function (button) {
+                        if (!button.onclick ||
+                            !button.getAttribute("onclick").includes("goHome")) {
+                            button.style.display = "none";
+                        }
+                    }
+                );
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
